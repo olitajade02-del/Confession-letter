@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secret Confession 💌</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff6a88, #ff99ac);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        width: 360px;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        text-align: center;
+        z-index: 1;
+    }
+
+    h2 {
+        color: #ff4d6d;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        outline: none;
+    }
+
+    textarea {
+        height: 80px;
+        resize: none;
+    }
+
+    button {
+        margin-top: 15px;
+        width: 100%;
+        padding: 10px;
+        background: #ff4d6d;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .result {
+        display: none;
+        margin-top: 20px;
+        background: #fff0f3;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .name {
+        font-weight: bold;
+        color: #ff4d6d;
+        font-size: 18px;
+    }
+
+    /* Heart animation */
+    .heart {
+        position: absolute;
+        animation: float 6s linear infinite;
+        font-size: 20px;
+    }
+
+    @keyframes float {
+        from { transform: translateY(100vh); opacity: 1; }
+        to { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>💌 Confession letter<h2>
+
+    <!-- SHE types her name -->
+    <input type="text" id="crush" placeholder="Type your name here">
+
+    <button onclick="sendConfession()">Reveal Confession</button>
+
+    <!-- OUTPUT -->
+    <div class="result" id="output">
+        <p class="name" id="showName"></p>
+        <p id="showMsg"></p>
+        <p>— from a secret admirer 💕</p>
+    </div>
+</div>
+
+<script>
+function sendConfession() {
+    const crush = document.getElementById("crush").value;
+
+    if (crush === "") {
+        alert("Please enter your name first 😊");
+        return;
+    }
+
+    document.getElementById("showName").textContent = "Hi " + crush + ",";
+    document.getElementById("showMsg").textContent =
+        "I’ve been meaning to tell you this… You’ve been on my mind more than you know. I don’t expect anything, I just wanted to be honest. I like you 💖";
+
+    document.getElementById("output").style.display = "block";
+}
+
+// floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 600);
+</script>
+
+</body>
+</html>
